@@ -7,8 +7,15 @@ using SFML.Window;
 
 namespace dotnnetcoresfml.Entities
 {
-    class Entity
+    class Entity:ICloneable
     {
+		private Vector2f position;
+		public Vector2f Position
+		{
+			get { return Sprite.Position; }
+			set { Sprite.Position = value; }
+		}
+
 		private Sprite entitysprite;
 		public Sprite Sprite
 		{
@@ -25,7 +32,8 @@ namespace dotnnetcoresfml.Entities
 			get { return entitysprite.Position.Y; }
 			set { entitysprite.Position = new Vector2f(entitysprite.Position.X, value);}
 		}
-		private Texture herotexture = new Texture(@"C:\Users\vklap\source\repos\dotnnetcoresfml\dotnnetcoresfml\Res\Empty.png");
+		private string texturepath = @"C:\Users\vklap\source\repos\dotnnetcoresfml\dotnnetcoresfml\Res\Empty.png";
+		private Texture herotexture;
 		public Texture Texture
 		{
 			get { return herotexture; }
@@ -39,10 +47,22 @@ namespace dotnnetcoresfml.Entities
 		}
 		public Entity(string filename,float x=0,float y=0)
 		{
+			texturepath = filename;
 			this.Sprite = new Sprite();
 			Texture t = new Texture(filename);
 			Sprite.Texture = t;
 			Sprite.Position = new Vector2f(x, y);
+		}
+		public Entity()
+		{}
+		public object Clone()
+		{
+			Entity entity = new Entity();
+			entity.herotexture = new Texture(this.texturepath);
+			entity.entitysprite = new Sprite(entity.Texture);
+			entity.Position = new Vector2f(this.X, this.Y);
+			
+			return entity;
 		}
 	}
 }

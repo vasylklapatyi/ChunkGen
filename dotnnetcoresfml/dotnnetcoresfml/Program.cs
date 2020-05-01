@@ -1,7 +1,4 @@
 ﻿using System;
-using SFML.Window;
-using SFML.Graphics;
-using SFML.System;
 using dotnnetcoresfml.Main_Loop;
 
 namespace dotnnetcoresfml

@@ -29,15 +29,20 @@ namespace dotnnetcoresfml.Main_Loop
 		}
 		public void StartLoop()
 		{
+			Init();
+			window.KeyPressed += Window_KeyPressed;
 			while (window.IsOpen)
 			{
 				window.DispatchEvents();
 				window.Clear();
-				Draw();
+				draw();
 				window.Draw(hero.Sprite);
 				window.Display();
 			}
 		}
+
+
+
 		public MainLoop(RenderWindow _window)
 		{
 			window = _window;
