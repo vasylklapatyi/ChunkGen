@@ -9,7 +9,6 @@ namespace dotnnetcoresfml.Entities
 {
     class Entity:ICloneable
     {
-		private Vector2f position;
 		public Vector2f Position
 		{
 			get { return Sprite.Position; }
@@ -57,8 +56,8 @@ namespace dotnnetcoresfml.Entities
 		{}
 		public object Clone()
 		{
-			Entity entity = new Entity();
-			entity.herotexture = new Texture(this.texturepath);
+			Entity entity = new Entity(this.texturepath);
+			entity.herotexture = new Texture(entity.texturepath);
 			entity.entitysprite = new Sprite(entity.Texture);
 			entity.Position = new Vector2f(this.X, this.Y);
 			

@@ -1,5 +1,6 @@
 ﻿using dotnnetcoresfml.Entities;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,9 @@ namespace dotnnetcoresfml.Main_Loop
 {
 	partial class MainLoop
     {
+		private float CurrentFrame = 0;
+		private Clock clock;
+		float time;
 		private List<Entity> entities = new List<Entity>();
 		public List<Entity> EntityList
 		{
@@ -31,8 +35,13 @@ namespace dotnnetcoresfml.Main_Loop
 		{
 			Init();
 			window.KeyPressed += Window_KeyPressed;
+			clock = new Clock();
+			FindHeroChunkOwner();
 			while (window.IsOpen)
 			{
+			    time = clock.ElapsedTime.AsMicroseconds();
+				clock.Restart();
+				time = time / 800;
 				window.DispatchEvents();
 				window.Clear();
 				draw();
