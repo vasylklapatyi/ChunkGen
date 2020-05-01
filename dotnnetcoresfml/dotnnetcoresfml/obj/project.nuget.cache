@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "qq4K7Wx9Frwg1okPKdJcP8QrJ/UbU1np4VGYIM3QNngJUOfzpXbQ8CJIebimP3ayKMWYtd9li7DqF+yb/ouyXA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\vklap\\Source\\Repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\dotnnetcoresfml.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vklap\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\vklap\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
+    "C:\\Users\\vklap\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
+    "C:\\Users\\vklap\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
+    "C:\\Users\\vklap\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
+    "C:\\Users\\vklap\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}
