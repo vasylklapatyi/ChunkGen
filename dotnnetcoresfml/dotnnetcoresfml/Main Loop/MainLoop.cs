@@ -43,7 +43,7 @@ namespace dotnnetcoresfml.Main_Loop
 				clock.Restart();
 				time = time / 800;
 				window.DispatchEvents();
-				window.Clear();
+				window.Clear(Color.Blue);
 				draw();
 				window.Draw(hero.Sprite);
 				window.Display();

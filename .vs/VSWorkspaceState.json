@@ -4,7 +4,9 @@
     "\\dotnnetcoresfml",
     "\\dotnnetcoresfml\\dotnnetcoresfml",
     "\\dotnnetcoresfml\\dotnnetcoresfml\\Entities",
-    "\\dotnnetcoresfml\\dotnnetcoresfml\\Main Loop"
+    "\\dotnnetcoresfml\\dotnnetcoresfml\\Main Loop",
+    "\\dotnnetcoresfml\\dotnnetcoresfml\\obj\\Debug",
+    "\\dotnnetcoresfml\\dotnnetcoresfml\\obj\\Debug\\netcoreapp3.1"
   ],
   "SelectedNode": "\\dotnnetcoresfml\\dotnnetcoresfml\\Main Loop\\MainLoopRealizations.cs",
   "PreviewInSolutionExplorer": false

@@ -6,7 +6,8 @@ using SFML.Graphics;
 using SFML.Window;
 using SFML.System;
 using System.Threading.Tasks;
-
+//юзати замість ліста дерево де ключ обєкта буде його значення якесь
+//створити сет-дзеркало тільки з числами самими де ігрек буде ключ,а індекс значенням
 namespace dotnnetcoresfml.Main_Loop
 {
    enum Direction
@@ -38,7 +39,9 @@ namespace dotnnetcoresfml.Main_Loop
         }
         private void Window_KeyPressed(object sender, KeyEventArgs e)
         {
-            FindHeroChunkOwner();
+            //  FindHeroChunkOwner();
+            int speed = 2;
+            if (speed >= MainVars.CHUNK_SIZE) speed = MainVars.CHUNK_SIZE;
             switch (e.Code)
             {
                 case Keyboard.Key.A:
@@ -47,16 +50,16 @@ namespace dotnnetcoresfml.Main_Loop
                         if (CurrentFrame > 3) CurrentFrame -= 3;
                         Console.WriteLine("A");
                         LoadChunks(Direction.Left);
-                        hero.Sprite.Position = new Vector2f(hero.X + -0.2f * time, hero.Y);
+                        hero.Sprite.Position = new Vector2f(hero.X - speed, hero.Y);
                         break;
                     }
                 case Keyboard.Key.D:
                     {
-                        CurrentFrame += 0.02f * time;
-                        if (CurrentFrame > 3) CurrentFrame -= 3;
-                        hero.Sprite.Position = new Vector2f(hero.X- -0.3f * time, hero.Y);
-                      //  Console.WriteLine("D");
                         LoadChunks(Direction.Right);
+                        CurrentFrame += 0.01f * time;
+                        if (CurrentFrame > 3) CurrentFrame -= 3;
+                        hero.Sprite.Position = new Vector2f(hero.X+ speed, hero.Y);
+                      //  Console.WriteLine("D");
                         break;
                     }
                 case Keyboard.Key.S:
@@ -65,7 +68,7 @@ namespace dotnnetcoresfml.Main_Loop
                         if (CurrentFrame > 3) CurrentFrame -= 3;
                         Console.WriteLine("S");
                         LoadChunks(Direction.Down);
-                        hero.Sprite.Position = new Vector2f(hero.X, hero.Y - -0.2f * time);
+                        hero.Sprite.Position = new Vector2f(hero.X, hero.Y + speed);
                         break;
                     }
                 case Keyboard.Key.W:
@@ -74,10 +77,9 @@ namespace dotnnetcoresfml.Main_Loop
                         if (CurrentFrame > 3) CurrentFrame -= 3;
                         Console.WriteLine("W");
                         LoadChunks(Direction.Up);
-                        hero.Sprite.Position = new Vector2f(hero.X,hero.Y+ -0.2f * time);
+                        hero.Sprite.Position = new Vector2f(hero.X,hero.Y-speed);
                         break;
                     }
-      
                 default:
                     break;
             }
@@ -92,21 +94,70 @@ namespace dotnnetcoresfml.Main_Loop
         {
             int nextlinepos = 0, FurthestRectI = 0;
             float smallestY = hero.Y;
-            for (int i = 1; i < EntityList.Count; i++)
+            switch (dir)
             {
-                if (EntityList[i].Y < smallestY) smallestY = EntityList[i].Y;
-                if (EntityList[i].Position.X - Hero.Position.X >
-                 EntityList[i - 1].Position.X - Hero.Position.X)
-                    FurthestRectI = i;
+                case Direction.Up:
+                    {
+
+                        break;
+                    }
+                case Direction.Down:
+                    {
+
+                        break;
+                    }
+                case Direction.Left:
+                    {
+                        int s = EntityList.Count;
+                        for (int i = 0; i < s; i++)
+                        {
+                            if (EntityList[i].X > (hero.X + (MainVars.CHUNK_SIZE * MainVars.VISIBILITY_DISTANCE)))
+                            {
+                                EntityList.RemoveAt(i);
+                                s--;
+                            }
+                        }
+                        for (int i = 1; i < EntityList.Count; i++)
+                        {
+                            if (EntityList[i].Y < smallestY) smallestY = EntityList[i].Y;
+
+                            if (hero.X - EntityList[i].X > hero.X - EntityList[i - 1].X) FurthestRectI = i;
+                        }
+                    //   if()
+                        break;
+                    }
+                case Direction.Right:
+                    {
+                        int s = EntityList.Count;
+                        for (int i = 0; i < s; i++)
+                        {
+                            if (EntityList[i].X < (hero.X - (MainVars.CHUNK_SIZE * MainVars.VISIBILITY_DISTANCE)))
+                            {
+                                EntityList.RemoveAt(i);
+                                s--;
+                            }
+                        }
+                        for (int i = 1; i < EntityList.Count; i++)
+                        {
+                            if (EntityList[i].Y < smallestY) smallestY = EntityList[i].Y;
+                            if (EntityList[i].Position.X - Hero.Position.X >
+                             EntityList[i - 1].Position.X - Hero.Position.X)
+                                FurthestRectI = i;
+                        }
+                        nextlinepos = NormalizeToChunkSize((int)EntityList[FurthestRectI].X);
+                        if (EntityList[FurthestRectI].Position.X - Hero.Position.X < MainVars.CHUNK_SIZE * MainVars.VISIBILITY_DISTANCE)
+                            AddVerticalLine(nextlinepos, smallestY);
+                        break;
+                    }
+                default:
+                    break;
             }
-            nextlinepos = NormalizeToChunkSize((int)EntityList[FurthestRectI].X);
-            if (EntityList[FurthestRectI].Position.X - Hero.Position.X < MainVars.CHUNK_SIZE * MainVars.VISIBILITY_DISTANCE)
-            for (int i = 0; i < MainVars.VISIBILITY_DISTANCE; i++)
-            {
-                    Entity newchunk = new Entity(@"C:\Users\vklap\Source\Repos\ChunkGen\dotnnetcoresfml\dotnnetcoresfml\Res\Chunk.png");
-                    newchunk.Position = new Vector2f(nextlinepos, smallestY + (MainVars.CHUNK_SIZE * i));
-                    EntityList.Add(newchunk);
-            }
+           
+           
+        
+
+       
+        
         }
         private async Task FindHeroChunkOwner()
         {
@@ -121,6 +172,15 @@ namespace dotnnetcoresfml.Main_Loop
                     }
                }
            }) ;
+        }
+        private void AddVerticalLine(int pos,float smallestY)
+        {
+            for (int i = 0; i < MainVars.VISIBILITY_DISTANCE; i++)
+            {
+                Entity newchunk = new Entity(@"C:\Users\vklap\Source\Repos\ChunkGen\dotnnetcoresfml\dotnnetcoresfml\Res\Chunk.png");
+                newchunk.Position = new Vector2f(pos, smallestY + (MainVars.CHUNK_SIZE * i));
+                EntityList.Add(newchunk);
+            }
         }
     }
    

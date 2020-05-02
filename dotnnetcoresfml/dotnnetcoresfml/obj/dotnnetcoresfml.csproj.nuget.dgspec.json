@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\vklap\\Source\\Repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\dotnnetcoresfml.csproj": {}
+    "C:\\Users\\vklap\\source\\repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\dotnnetcoresfml.csproj": {}
   },
   "projects": {
-    "C:\\Users\\vklap\\Source\\Repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\dotnnetcoresfml.csproj": {
+    "C:\\Users\\vklap\\source\\repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\dotnnetcoresfml.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\vklap\\Source\\Repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\dotnnetcoresfml.csproj",
+        "projectUniqueName": "C:\\Users\\vklap\\source\\repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\dotnnetcoresfml.csproj",
         "projectName": "dotnnetcoresfml",
-        "projectPath": "C:\\Users\\vklap\\Source\\Repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\dotnnetcoresfml.csproj",
+        "projectPath": "C:\\Users\\vklap\\source\\repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\dotnnetcoresfml.csproj",
         "packagesPath": "C:\\Users\\vklap\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\vklap\\Source\\Repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\obj\\",
+        "outputPath": "C:\\Users\\vklap\\source\\repos\\ChunkGen\\dotnnetcoresfml\\dotnnetcoresfml\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"

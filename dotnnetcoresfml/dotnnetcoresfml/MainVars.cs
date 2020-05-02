@@ -10,7 +10,7 @@ namespace dotnnetcoresfml
         public static readonly int CHUNK_SIZE;
         static MainVars()
         {
-            VISIBILITY_DISTANCE = 4;
+            VISIBILITY_DISTANCE =4;
             CHUNK_SIZE = 16;
         }
     }
