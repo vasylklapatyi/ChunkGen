@@ -8,6 +8,7 @@ using SFML.System;
 using System.Threading.Tasks;
 //юзати замість ліста дерево де ключ обєкта буде його значення якесь
 //створити сет-дзеркало тільки з числами самими де ігрек буде ключ,а індекс значенням
+//попробувати скоротити на основі видалення,якщо видалення здійснилось - додати рядок в протилежному напрямку
 namespace dotnnetcoresfml.Main_Loop
 {
    enum Direction
@@ -109,21 +110,18 @@ namespace dotnnetcoresfml.Main_Loop
                 case Direction.Left:
                     {
                         int s = EntityList.Count;
+                        bool generate = false;
                         for (int i = 0; i < s; i++)
                         {
                             if (EntityList[i].X > (hero.X + (MainVars.CHUNK_SIZE * MainVars.VISIBILITY_DISTANCE)))
                             {
                                 EntityList.RemoveAt(i);
                                 s--;
+                                generate = true;
                             }
                         }
-                        for (int i = 1; i < EntityList.Count; i++)
-                        {
-                            if (EntityList[i].Y < smallestY) smallestY = EntityList[i].Y;
-
-                            if (hero.X - EntityList[i].X > hero.X - EntityList[i - 1].X) FurthestRectI = i;
-                        }
-                    //   if()
+                      if(generate)
+                            AddVerticalLine((NormalizeToChunkSize((int)hero.X)-(MainVars.CHUNK_SIZE*MainVars.VISIBILITY_DISTANCE)-MainVars.CHUNK_SIZE), smallestY);
                         break;
                     }
                 case Direction.Right:
