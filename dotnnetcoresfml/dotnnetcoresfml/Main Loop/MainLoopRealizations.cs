@@ -29,11 +29,12 @@ namespace dotnnetcoresfml.Main_Loop
         }
         private void Init()
         {
-            for (int i = 0; i < MainVars.VISIBILITY_DISTANCE; i++)
+            for (int i = 0; i <2* MainVars.VISIBILITY_DISTANCE; i++)
             {
-                for (int j = 0; j < MainVars.VISIBILITY_DISTANCE; j++)
+                for (int j = 0; j < 2*MainVars.VISIBILITY_DISTANCE; j++)
                 {
-                    Entity chunk = new Entity(new Texture(@"C:\Users\vklap\Source\Repos\ChunkGen\dotnnetcoresfml\dotnnetcoresfml\Res\Chunk.png"));
+                    Entity chunk = new Entity(new Texture(@"C:\Users\vklap\source\repos\ChunkGen\dotnnetcoresfml\dotnnetcoresfml\Res\MAP2.png"));
+                    chunk.Sprite.TextureRect = new IntRect(i * MainVars.CHUNK_SIZE, j * MainVars.CHUNK_SIZE, MainVars.CHUNK_SIZE, MainVars.CHUNK_SIZE);
                     chunk.Position = new Vector2f(i * MainVars.CHUNK_SIZE, j * MainVars.CHUNK_SIZE);
                     EntityList.Add(chunk);
                 }
@@ -42,7 +43,7 @@ namespace dotnnetcoresfml.Main_Loop
         private void Window_KeyPressed(object sender, KeyEventArgs e)
         {
             //  FindHeroChunkOwner();
-            int speed = 2;
+            int speed = 5;
             if (speed >= MainVars.CHUNK_SIZE) speed = MainVars.CHUNK_SIZE;
             switch (e.Code)
             {
@@ -214,8 +215,10 @@ namespace dotnnetcoresfml.Main_Loop
         {
             for (int i = 0; i < 2*MainVars.VISIBILITY_DISTANCE; i++)
             {
-                Entity newchunk = new Entity(@"C:\Users\vklap\Source\Repos\ChunkGen\dotnnetcoresfml\dotnnetcoresfml\Res\Chunk.png");
+                Entity newchunk = new Entity(@"C:\Users\vklap\source\repos\ChunkGen\dotnnetcoresfml\dotnnetcoresfml\Res\MAP2.png");
+
                 newchunk.Position = new Vector2f(pos, smallestY + (MainVars.CHUNK_SIZE * i));
+                newchunk.Sprite.TextureRect = new IntRect((int)newchunk.X, (int)newchunk.Y, MainVars.CHUNK_SIZE, MainVars.CHUNK_SIZE);
                 EntityList.Add(newchunk);
             }
         }
@@ -223,8 +226,10 @@ namespace dotnnetcoresfml.Main_Loop
         {
             for (int i = 0; i < 2*MainVars.VISIBILITY_DISTANCE; i++)
             {
-                Entity newchunk = new Entity(@"C:\Users\vklap\Source\Repos\ChunkGen\dotnnetcoresfml\dotnnetcoresfml\Res\Chunk.png");
+                Entity newchunk = new Entity(@"C:\Users\vklap\source\repos\ChunkGen\dotnnetcoresfml\dotnnetcoresfml\Res\MAP2.png");
+
                 newchunk.Position = new Vector2f((int)smallestX+(MainVars.CHUNK_SIZE * i),pos );
+                newchunk.Sprite.TextureRect = new IntRect((int)newchunk.X, (int)newchunk.Y, MainVars.CHUNK_SIZE, MainVars.CHUNK_SIZE);
                 EntityList.Add(newchunk);
             }
         }
